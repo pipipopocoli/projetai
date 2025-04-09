@@ -7,9 +7,7 @@ import numpy as np
 
 base_url = "https://www.nature.com"
 ### for yr 2012 .. 2024
-yr = 2023
-### for volume 1 .. 10
-vl = 1
+yr = 2012
 ### FOR LOOP through pages 1...20
 def clip(target, strt, fnsh, offset = 0):
     STRT = re.search(strt, target) 
@@ -17,30 +15,23 @@ def clip(target, strt, fnsh, offset = 0):
         return STRT
     FNSH = STRT.span()[1] + offset + re.search(fnsh, target[STRT.span()[1] + offset:]).span()[0]
     return target[STRT.span()[1]+offset:FNSH]
-    
-for pg in range(3,21):
 
 
-    # def fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com"):
+def fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com"):
     search_url = f"{base_url}/search?date_range={yr}-{yr}&volume={vl}&page={pg}"
-    dois, urls, auth, email, title, date = [], [], [], [], [], []
-
     search_page = url.urlopen(search_url)
     page = search_page.read().decode("utf8")
-
+    #### URLs table
+    dois, urls, auth, email, title, date = [], [], [], [], [], []
     #### Subjects tbl
     dois_tbl, sub_tbl = [], np.array([])
-
     idx, doi_end = 0, 0
-    
-
-    while (idx + doi_end) < len(page):
-        
-        idx = 0 + doi_end
-        doi_start = idx + re.search("\/articles\/s", page[idx:]).span()[1]
+    while ((idx + doi_end) < len(page)) and (re.search("\/articles\/", page[doi_end:]) is not None):
+        idx = doi_end
+        doi_start = idx + re.search("\/articles\/", page[idx:]).span()[1]
         doi_end = doi_start + re.search("\"", page[doi_start:]).span()[0]
         doi = page[doi_start:doi_end]
-        article_url = f"{base_url}/articles/s{doi}"
+        article_url = f"{base_url}/articles/{doi}"
         dois.append(doi)
         urls.append(article_url)
         print(article_url)
@@ -64,13 +55,18 @@ for pg in range(3,21):
         art_subjects = art_subjects.split(",")
         sub_tbl = np.concatenate([sub_tbl, art_subjects])
         [dois_tbl.append(doi) for i in range(len(art_subjects))]
+    return dois, urls, auth, email, title, date, dois_tbl, sub_tbl
+    
+for vl in range(1,11):
+    for pg in range(1,21):
+        dois, urls, auth, email, title, date, dois_tbl, sub_tbl = fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com")
+        
+        ### SAVES the subjects table    
+        subjects_table = pd.DataFrame(dict([("doi", dois_tbl), ("subject",sub_tbl)]))
+        subjects_table.to_csv(f"Articles_Data/subjects_{yr}_vol{vl}_{pg}.csv", index = False)
 
-    ### SAVES the subjects table    
-    subjects_table = pd.DataFrame(dict([("doi", dois_tbl), ("subject",sub_tbl)]))
-    subjects_table.to_csv(f"subjects_{yr}_vol{vl}_{pg}.csv", index = False)
-
-    ## SAVES the urls
-    results = pd.DataFrame(dict([("doi", dois), ("author",auth), ("title", title), ("email",email),("url",urls),("date",date)]))
-    results.to_csv(f"urls_{yr}_vol{vl}_{pg}.csv", index = False)
+        ## SAVES the urls
+        results = pd.DataFrame(dict([("doi", dois), ("author",auth), ("title", title), ("email",email),("url",urls),("date",date)]))
+        results.to_csv(f"Articles_Data/urls_{yr}_vol{vl}_{pg}.csv", index = False)
 
 pdb.set_trace()
