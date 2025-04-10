@@ -7,7 +7,7 @@ import numpy as np
 
 base_url = "https://www.nature.com"
 ### for yr 2012 .. 2024
-yr = 2012
+yr = 2023
 ### FOR LOOP through pages 1...20
 def clip(target, strt, fnsh, offset = 0):
     STRT = re.search(strt, target) 
@@ -63,10 +63,10 @@ for vl in range(1,11):
         
         ### SAVES the subjects table    
         subjects_table = pd.DataFrame(dict([("doi", dois_tbl), ("subject",sub_tbl)]))
-        subjects_table.to_csv(f"Articles_Data/subjects_{yr}_vol{vl}_{pg}.csv", index = False)
+        subjects_table.to_csv(f"Articles_Data/subjects_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
 
         ## SAVES the urls
         results = pd.DataFrame(dict([("doi", dois), ("author",auth), ("title", title), ("email",email),("url",urls),("date",date)]))
-        results.to_csv(f"Articles_Data/urls_{yr}_vol{vl}_{pg}.csv", index = False)
+        results.to_csv(f"Articles_Data/urls_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
 
 pdb.set_trace()
