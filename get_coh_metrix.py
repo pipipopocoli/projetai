@@ -8,6 +8,36 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 import h5py
+
+
+def login(driver, wait, username, password):
+    """
+    Se connecte au site en naviguant vers la page Login.
+    IDs utilisés :
+      - Nom d'utilisateur : "txtUserName"
+      - Mot de passe : "txtPassword"
+      - Bouton de connexion : "btnLogin"
+    """
+    login_url = "https://soletlab.adaptiveliteracy.com:8443/Login.aspx"
+    driver.get(login_url)
+    
+    # Attendre que le champ du nom d'utilisateur soit présent
+    user_field = wait.until(EC.presence_of_element_located((By.ID, "txtUserName")))
+    user_field.clear()
+    user_field.send_keys(username)
+    
+    # Remplir le champ du mot de passe
+    pwd_field = driver.find_element(By.ID, "txtPassword")
+    pwd_field.clear()
+    pwd_field.send_keys(password)
+    
+    # Cliquer sur le bouton de connexion
+    login_button = driver.find_element(By.ID, "btnLogin")
+    login_button.click()
+    
+    # Attendre que l'URL contienne "Grid/Coh-MetrixMytext.aspx" pour confirmer la connexion
+    wait.until(EC.url_contains("Grid/Coh-MetrixMytext.aspx"))
+
 # Créer un répertoire temporaire unique pour le profil utilisateur
 temp_profile_dir = tempfile.mkdtemp()
 
@@ -22,6 +52,10 @@ driver = webdriver.Chrome(options=chrome_options)
 print("first wait...")
 wait = WebDriverWait(driver, 15)
 
+login_username = "leonardsauve@gmail.com"
+login_password = "RARS3075"
+login(driver, wait, login_username, login_password)
+pdb.set_trace()
 # Accéder à la page "My Text" pour l'ajout du texte
 url = "https://soletlab.adaptiveliteracy.com:8443/Grid/Coh-MetrixMytext.aspx"
 driver.get(url)
