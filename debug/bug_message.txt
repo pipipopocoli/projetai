@@ -15,23 +15,25 @@ Traceback (most recent call last):
     self.error_handler.check_response(response)
   File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
     raise exception_class(message, screen, stacktrace)
-selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
 Stacktrace:
-#0 0x55c60f755d0a <unknown>
-#1 0x55c60f2065f0 <unknown>
-#2 0x55c60f2400db <unknown>
-#3 0x55c60f23be2f <unknown>
-#4 0x55c60f28bf9e <unknown>
-#5 0x55c60f28b4c6 <unknown>
-#6 0x55c60f27d433 <unknown>
-#7 0x55c60f249ea3 <unknown>
-#8 0x55c60f24ab01 <unknown>
-#9 0x55c60f71ab5b <unknown>
-#10 0x55c60f71ea41 <unknown>
-#11 0x55c60f701c52 <unknown>
-#12 0x55c60f71f5b4 <unknown>
-#13 0x55c60f6e5f0f <unknown>
-#14 0x55c60f743db8 <unknown>
-#15 0x55c60f743f96 <unknown>
-#16 0x55c60f754b56 <unknown>
-#17 0x7f7317ecf1ca start_thread
+#0 0x55b07366b1fa <unknown>
+#1 0x55b07317b810 <unknown>
+#2 0x55b0731b2ed8 <unknown>
+#3 0x55b0731aea36 <unknown>
+#4 0x55b0731fa816 <unknown>
+#5 0x55b0731f9e66 <unknown>
+#6 0x55b0731ee323 <unknown>
+#7 0x55b0731bcde0 <unknown>
+#8 0x55b0731bddbe <unknown>
+#9 0x55b07363712b <unknown>
+#10 0x55b07363b0c7 <unknown>
+#11 0x55b0736246cc <unknown>
+#12 0x55b07363bc47 <unknown>
+#13 0x55b07360967f <unknown>
+#14 0x55b07365a288 <unknown>
+#15 0x55b07365a450 <unknown>
+#16 0x55b07366a076 <unknown>
+#17 0x7fb3b6cca1ca start_thread
