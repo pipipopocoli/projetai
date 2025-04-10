@@ -1,5 +1,5 @@
 Traceback (most recent call last):
-  File "/u/sauves/articles_database/get_coh_metrix.py", line 14, in <module>
+  File "/u/sauves/articles_database/get_coh_metrix.py", line 17, in <module>
     driver = webdriver.Chrome(options=chrome_options)
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
@@ -17,21 +17,21 @@ Traceback (most recent call last):
     raise exception_class(message, screen, stacktrace)
 selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
 Stacktrace:
-#0 0x556a7982ed0a <unknown>
-#1 0x556a792df5f0 <unknown>
-#2 0x556a793190db <unknown>
-#3 0x556a79314e2f <unknown>
-#4 0x556a79364f9e <unknown>
-#5 0x556a793644c6 <unknown>
-#6 0x556a79356433 <unknown>
-#7 0x556a79322ea3 <unknown>
-#8 0x556a79323b01 <unknown>
-#9 0x556a797f3b5b <unknown>
-#10 0x556a797f7a41 <unknown>
-#11 0x556a797dac52 <unknown>
-#12 0x556a797f85b4 <unknown>
-#13 0x556a797bef0f <unknown>
-#14 0x556a7981cdb8 <unknown>
-#15 0x556a7981cf96 <unknown>
-#16 0x556a7982db56 <unknown>
-#17 0x7f1b9cb661ca start_thread
+#0 0x55c60f755d0a <unknown>
+#1 0x55c60f2065f0 <unknown>
+#2 0x55c60f2400db <unknown>
+#3 0x55c60f23be2f <unknown>
+#4 0x55c60f28bf9e <unknown>
+#5 0x55c60f28b4c6 <unknown>
+#6 0x55c60f27d433 <unknown>
+#7 0x55c60f249ea3 <unknown>
+#8 0x55c60f24ab01 <unknown>
+#9 0x55c60f71ab5b <unknown>
+#10 0x55c60f71ea41 <unknown>
+#11 0x55c60f701c52 <unknown>
+#12 0x55c60f71f5b4 <unknown>
+#13 0x55c60f6e5f0f <unknown>
+#14 0x55c60f743db8 <unknown>
+#15 0x55c60f743f96 <unknown>
+#16 0x55c60f754b56 <unknown>
+#17 0x7f7317ecf1ca start_thread
