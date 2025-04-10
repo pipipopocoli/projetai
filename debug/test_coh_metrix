@@ -1,24 +1,28 @@
 import time
+import tempfile
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-# Configuration des options Chrome avec un répertoire de données personnalisé
+# Création d'un répertoire temporaire unique pour le profil utilisateur de Chrome
+temp_profile_dir = tempfile.mkdtemp()
+
+# Configuration des options Chrome avec le répertoire temporaire
 chrome_options = Options()
-chrome_options.add_argument("--user-data-dir=/tmp/selenium_profile")  # Assurez-vous que ce dossier est accessible et unique
+chrome_options.add_argument(f"--user-data-dir={temp_profile_dir}")
 
 # Initialisation du driver Chrome avec les options configurées
 driver = webdriver.Chrome(options=chrome_options)
 wait = WebDriverWait(driver, 15)
 
-# 1. Accéder à la page "My Text" pour l'ajout du texte
+# Accéder à la page "My Text" pour l'ajout du texte
 url = "https://soletlab.adaptiveliteracy.com:8443/Grid/Coh-MetrixMytext.aspx"
 driver.get(url)
 time.sleep(3)  # Pause pour permettre le chargement complet de la page
 
-# 2. Remplissage du formulaire
+# Remplissage du formulaire
 
 # Remplir le champ "Titre de l'article"
 title_field = wait.until(EC.presence_of_element_located((By.ID, "txtTitle")))
@@ -48,17 +52,15 @@ sample_text = (
 )
 text_area.send_keys(sample_text)
 
-# 3. Soumettre le formulaire
+# Soumettre le formulaire
 submit_button = driver.find_element(By.ID, "btnSubmit")
 submit_button.click()
 time.sleep(5)  # Attente pour que l'analyse soit effectuée
 
-# 4. Actualiser pour récupérer les résultats
+# Actualiser pour récupérer les résultats
 refresh_button = wait.until(EC.element_to_be_clickable((By.ID, "btnRefresh")))
 refresh_button.click()
 time.sleep(5)  # Attente pour que les résultats se mettent à jour
-
-# 5. Extraire les résultats
 
 # Extraction du Flesch-Kincaid Grade
 try:
@@ -81,3 +83,4 @@ print("Données graphiques:", graph_data)
 
 # Fermer le navigateur
 driver.quit()
+
