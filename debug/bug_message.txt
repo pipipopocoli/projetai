@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/u/sauves/articles_database/get_coh_metrix.py", line 8, in <module>
+    driver = webdriver.Chrome()
+             ^^^^^^^^^^^^^^^^^^
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 66, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 250, in __init__
+    self.start_session(capabilities)
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 342, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+Stacktrace:
+#0 0x55aa38798d0a <unknown>
+#1 0x55aa382495f0 <unknown>
+#2 0x55aa382830db <unknown>
+#3 0x55aa3827ee2f <unknown>
+#4 0x55aa382cef9e <unknown>
+#5 0x55aa382ce4c6 <unknown>
+#6 0x55aa382c0433 <unknown>
+#7 0x55aa3828cea3 <unknown>
+#8 0x55aa3828db01 <unknown>
+#9 0x55aa3875db5b <unknown>
+#10 0x55aa38761a41 <unknown>
+#11 0x55aa38744c52 <unknown>
+#12 0x55aa387625b4 <unknown>
+#13 0x55aa38728f0f <unknown>
+#14 0x55aa38786db8 <unknown>
+#15 0x55aa38786f96 <unknown>
+#16 0x55aa38797b56 <unknown>
+#17 0x7f2866c921ca start_thread
