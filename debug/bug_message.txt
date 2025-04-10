@@ -1,39 +1,23 @@
 Traceback (most recent call last):
-  File "/u/sauves/articles_database/get_coh_metrix.py", line 17, in <module>
-    driver = webdriver.Chrome(options=chrome_options)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
-    super().__init__(
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/chromium/webdriver.py", line 66, in __init__
-    super().__init__(command_executor=executor, options=options)
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 250, in __init__
-    self.start_session(capabilities)
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 342, in start_session
-    response = self.execute(Command.NEW_SESSION, caps)["value"]
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
-    self.error_handler.check_response(response)
-  File "/u/sauves/articles_database/env/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
-    raise exception_class(message, screen, stacktrace)
-selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
-  (session not created: DevToolsActivePort file doesn't exist)
-  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+  File "/Users/leonardsauve/Documents/articles_database/get_coh_metrix.py", line 34, in <module>
+    title_field = wait.until(EC.presence_of_element_located((By.ID, "txtTitle")))
+  File "/Users/leonardsauve/Documents/articles_database/env/lib/python3.9/site-packages/selenium/webdriver/support/wait.py", line 146, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
 Stacktrace:
-#0 0x55b07366b1fa <unknown>
-#1 0x55b07317b810 <unknown>
-#2 0x55b0731b2ed8 <unknown>
-#3 0x55b0731aea36 <unknown>
-#4 0x55b0731fa816 <unknown>
-#5 0x55b0731f9e66 <unknown>
-#6 0x55b0731ee323 <unknown>
-#7 0x55b0731bcde0 <unknown>
-#8 0x55b0731bddbe <unknown>
-#9 0x55b07363712b <unknown>
-#10 0x55b07363b0c7 <unknown>
-#11 0x55b0736246cc <unknown>
-#12 0x55b07363bc47 <unknown>
-#13 0x55b07360967f <unknown>
-#14 0x55b07365a288 <unknown>
-#15 0x55b07365a450 <unknown>
-#16 0x55b07366a076 <unknown>
-#17 0x7fb3b6cca1ca start_thread
+0   chromedriver                        0x00000001006aedec cxxbridge1$str$ptr + 2817040
+1   chromedriver                        0x00000001006a7088 cxxbridge1$str$ptr + 2784940
+2   chromedriver                        0x00000001001ee8d8 cxxbridge1$string$len + 93028
+3   chromedriver                        0x00000001002356a0 cxxbridge1$string$len + 383276
+4   chromedriver                        0x00000001002767b8 cxxbridge1$string$len + 649796
+5   chromedriver                        0x0000000100229a80 cxxbridge1$string$len + 335116
+6   chromedriver                        0x0000000100673c74 cxxbridge1$str$ptr + 2575000
+7   chromedriver                        0x0000000100676f40 cxxbridge1$str$ptr + 2588004
+8   chromedriver                        0x00000001006539fc cxxbridge1$str$ptr + 2443296
+9   chromedriver                        0x00000001006777bc cxxbridge1$str$ptr + 2590176
+10  chromedriver                        0x0000000100644af0 cxxbridge1$str$ptr + 2382100
+11  chromedriver                        0x00000001006979a0 cxxbridge1$str$ptr + 2721732
+12  chromedriver                        0x0000000100697b2c cxxbridge1$str$ptr + 2722128
+13  chromedriver                        0x00000001006a6cd4 cxxbridge1$str$ptr + 2783992
+14  libsystem_pthread.dylib             0x000000018e47ef94 _pthread_start + 136
+15  libsystem_pthread.dylib             0x000000018e479d34 thread_start + 8
