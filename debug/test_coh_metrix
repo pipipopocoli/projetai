@@ -3,9 +3,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
-# Initialisation du driver (ici Chrome) – assurez-vous que le ChromeDriver est dans votre PATH
-driver = webdriver.Chrome()
+# Configuration des options Chrome avec un répertoire de données personnalisé
+chrome_options = Options()
+chrome_options.add_argument("--user-data-dir=/tmp/selenium_profile")  # Assurez-vous que ce dossier est accessible et unique
+
+# Initialisation du driver Chrome avec les options configurées
+driver = webdriver.Chrome(options=chrome_options)
 wait = WebDriverWait(driver, 15)
 
 # 1. Accéder à la page "My Text" pour l'ajout du texte
@@ -66,7 +71,7 @@ except Exception as e:
 # Extraction des données graphiques (si disponibles en texte)
 try:
     graph_data_elem = driver.find_element(By.ID, "divGraphData")
-    graph_data = graph_data_elem.text  # Si ces données sont affichées en texte, sinon adapter
+    graph_data = graph_data_elem.text  # Adaptez selon le format (texte/HTML)
 except Exception as e:
     graph_data = "Non trouvé"
     print("Erreur lors de l'extraction des données graphiques:", e)
