@@ -7,7 +7,7 @@ import numpy as np
 
 base_url = "https://www.nature.com"
 ### for yr 2012 .. 2024
-yr = 2023
+yr = 2024
 ### FOR LOOP through pages 1...20
 def clip(target, strt, fnsh, offset = 0):
     STRT = re.search(strt, target) 
@@ -56,17 +56,17 @@ def fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com"):
         sub_tbl = np.concatenate([sub_tbl, art_subjects])
         [dois_tbl.append(doi) for i in range(len(art_subjects))]
     return dois, urls, auth, email, title, date, dois_tbl, sub_tbl
-    
-for vl in range(1,11):
+outpath = "Articles_Data/articles_2024"
+for vl in range(7,11):
     for pg in range(1,21):
         dois, urls, auth, email, title, date, dois_tbl, sub_tbl = fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com")
         
         ### SAVES the subjects table    
         subjects_table = pd.DataFrame(dict([("doi", dois_tbl), ("subject",sub_tbl)]))
-        subjects_table.to_csv(f"Articles_Data/subjects_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
+        subjects_table.to_csv(f"{outpath}/subjects_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
 
         ## SAVES the urls
         results = pd.DataFrame(dict([("doi", dois), ("author",auth), ("title", title), ("email",email),("url",urls),("date",date)]))
-        results.to_csv(f"Articles_Data/urls_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
+        results.to_csv(f"{outpath}/urls_{yr}_vol{vl}_{pg}.csv", sep="\t", index = False)
 
 pdb.set_trace()
