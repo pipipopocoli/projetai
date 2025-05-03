@@ -7,7 +7,7 @@ import numpy as np
 
 base_url = "https://www.nature.com"
 ### for yr 2012 .. 2024
-yr = 2024
+yr = 2025
 ### FOR LOOP through pages 1...20
 def clip(target, strt, fnsh, offset = 0):
     STRT = re.search(strt, target) 
@@ -56,8 +56,8 @@ def fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com"):
         sub_tbl = np.concatenate([sub_tbl, art_subjects])
         [dois_tbl.append(doi) for i in range(len(art_subjects))]
     return dois, urls, auth, email, title, date, dois_tbl, sub_tbl
-outpath = "Articles_Data/articles_2024"
-for vl in range(7,11):
+outpath = f"Articles_Data/articles_{yr}"
+for vl in range(1,11):
     for pg in range(1,21):
         dois, urls, auth, email, title, date, dois_tbl, sub_tbl = fetch_data_tbl(yr, vl, pg, base_url = "https://www.nature.com")
         

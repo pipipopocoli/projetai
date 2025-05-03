@@ -4,15 +4,15 @@ import pdb
 import re
 import os
 from textstat import *
-
-for vl in range(1,10):
+yr = 2025
+for vl in range(1,11):
     for pg in range(1,21):
-        filename = f"2012_vol{vl}_{pg}"
-        basepath = "Articles_Data/articles_2012"
+        filename = f"{yr}_vol{vl}_{pg}"
+        basepath = f"Articles_Data/articles_{yr}"
         if f"urls_{filename}.csv" in os.listdir(basepath):
-            art_csv = pd.read_csv(f"{basepath}/urls_{filename}.csv")
+            art_csv = pd.read_csv(f"{basepath}/urls_{filename}.csv", sep = "\t")
             art_url = art_csv.url
-            subj_csv = pd.read_csv(f"{basepath}/subjects_{filename}.csv")
+            subj_csv = pd.read_csv(f"{basepath}/subjects_{filename}.csv", sep = "\t")
 
             dois, cind, fks, dates = [], [], [], []
             for (i, url_i) in enumerate(art_url):
