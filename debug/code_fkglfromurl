@@ -1,0 +1,98 @@
+# On applique le script à l'ensemble du fichier Nature_pubmed_articles_by_journal.csv
+# Cela va enrichir chaque article avec DOI, lisibilité et métadonnées
+# On affiche un aperçu du résultat final
+
+import re, time
+from urllib.parse import quote_plus
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import textstat
+
+CROSSREF = "https://api.crossref.org/works"
+
+def _doi_from_meta(html):
+    soup = BeautifulSoup(html, "lxml")
+    patterns = ["citation_doi", "dc.identifier", "doi"]
+    for p in patterns:
+        tag = soup.find("meta", attrs={"name": re.compile(p, re.I)})
+        if tag and tag.get("content"):
+            return tag["content"].strip()
+    m = re.search(r"10\\.\d{4,9}/[-._;()/:A-Z0-9]+", html, re.I)
+    return m.group(0) if m else None
+
+def _doi_from_crossref(url):
+    q = {"filter": "from-url:" + url, "mailto": "team@julius.ai"}
+    try:
+        r = requests.get(CROSSREF, params=q, timeout=30)
+        items = r.json()["message"]["items"]
+        return items[0]["DOI"] if items else None
+    except Exception:
+        return None
+
+def find_doi(url):
+    try:
+        html = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"}).text
+        return _doi_from_meta(html) or _doi_from_crossref(url)
+    except Exception:
+        return _doi_from_crossref(url)
+
+def _clean_text(html):
+    soup = BeautifulSoup(html, "lxml")
+    for junk in soup(["script", "style", "noscript"]):
+        junk.decompose()
+    return soup.get_text(" ", strip=True)
+
+def fetch_plain_text(url, doi=None):
+    try:
+        html = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"}).text
+        return _clean_text(html)
+    except Exception:
+        pass
+    if doi:
+        epmc = ("https://www.ebi.ac.uk/europepmc/webservices/rest/"
+                + "search?query=DOI:" + quote_plus(doi) + "&resultType=core&format=json")
+        try:
+            hit = requests.get(epmc, timeout=30).json()["resultList"]["result"][0]
+            for link in hit.get("fullTextUrlList", {}).get("fullTextUrl", []):
+                if link.get("documentStyle") == "text":
+                    return requests.get(link["url"], timeout=30).text
+        except Exception:
+            pass
+    return None
+
+def _meta_from_crossref(doi):
+    try:
+        item = requests.get(CROSSREF + "/" + quote_plus(doi), timeout=30).json()["message"]
+        return {
+            "title": item.get("title", [None])[0],
+            "journal": item.get("container-title", [None])[0],
+            "year":  item.get("issued", {}).get("date-parts", [[None]])[0][0]
+        }
+    except Exception:
+        return {}
+
+def process_row(row):
+    url = row["url"]
+    doi = find_doi(url)
+    text = fetch_plain_text(url, doi)
+    fk = textstat.flesch_kincaid_grade(text) if text else None
+    cli = textstat.coleman_liau_index(text) if text else None
+    meta = _meta_from_crossref(doi) if doi else {}
+    return pd.Series({
+        "doi": doi,
+        "fk_grade": fk,
+        "coleman_liau": cli,
+        "title": meta.get("title"),
+        "journal": meta.get("journal"),
+        "year": meta.get("year")
+    })
+
+# On charge le CSV complet
+df = pd.read_csv("https://raw.githubusercontent.com/Kontrabass2018/articles_database/main/sample_data/pubmed/Nature_pubmed_articles_by_journal.csv")
+
+# Application du traitement à tout le DataFrame (cela peut prendre plusieurs minutes)
+enriched = pd.concat([df, df.apply(process_row, axis=1)], axis=1)
+
+# Affichage d'un aperçu du résultat
+enriched.head()
