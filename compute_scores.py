@@ -2,8 +2,16 @@ import urllib.request as url
 import pandas as pd
 import pdb
 import re
-import os
-from textstat import *
+import os 
+data_list = []
+for yr in [2020,2021,2022,2023,2024,2025]:
+    yr = 2020
+    for fname in os.listdir(f"Articles_Data/articles_{yr}"):
+        if "scores" in fname:
+            data_list.append(pd.read_csv(f"Articles_Data/articles_{yr}/{fname}", sep = "\t"))
+pd.concat(data_list).to_csv("sample_data/Nature_scores.csv")
+pdb.set_trace()
+
 yr = 2025
 for vl in range(1,11):
     for pg in range(1,21):
