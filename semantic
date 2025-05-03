@@ -1,0 +1,26 @@
+import requests
+import time
+
+def get_semantic_scholar_articles(query, year, limit=50, offset=0):
+    base_url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    
+    params = {
+        "query": f"{query} year:{year}",
+        "fields": "title,url,year,authors,externalIds",
+        "limit": limit,
+        "offset": offset
+    }
+
+    response = requests.get(base_url, params=params)
+    data = response.json()
+
+    articles = []
+    for paper in data.get("data", []):
+        articles.append({
+            "title": paper.get("title"),
+            "year": paper.get("year"),
+            "url": paper.get("url"),
+            "doi": paper.get("externalIds", {}).get("DOI")
+        })
+
+    return articles
