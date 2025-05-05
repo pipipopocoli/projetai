@@ -1,0 +1,127 @@
+journal,year,expected_count
+Nature,2020,3622
+Nature,2021,3736
+Nature,2022,4100
+Nature,2023,4311
+Nature,2024,4382
+Nature,2025,1633
+Science,2020,4571
+Science,2021,3532
+Science,2022,2051
+Science,2023,1972
+Science,2024,2039
+Science,2025,693
+Cell,2020,598
+Cell,2021,536
+Cell,2022,429
+Cell,2023,453
+Cell,2024,548
+Cell,2025,229
+Nature Biotechnology,2020,424
+Nature Biotechnology,2021,394
+Nature Biotechnology,2022,429
+Nature Biotechnology,2023,466
+Nature Biotechnology,2024,468
+Nature Biotechnology,2025,140
+Nature Climate Change,2020,291
+Nature Climate Change,2021,290
+Nature Climate Change,2022,307
+Nature Climate Change,2023,338
+Nature Climate Change,2024,318
+Nature Climate Change,2025,107
+Trends in Ecology & Evolution,2020,177
+Trends in Ecology & Evolution,2021,178
+Trends in Ecology & Evolution,2022,167
+Trends in Ecology & Evolution,2023,185
+Trends in Ecology & Evolution,2024,171
+Trends in Ecology & Evolution,2025,89
+Nature Communications,2020,6449
+Nature Communications,2021,7362
+Nature Communications,2022,7977
+Nature Communications,2023,8527
+Nature Communications,2024,10926
+Nature Communications,2025,4122
+Nature Ecology & Evolution,2020,285
+Nature Ecology & Evolution,2021,278
+Nature Ecology & Evolution,2022,292
+Nature Ecology & Evolution,2023,326
+Nature Ecology & Evolution,2024,342
+Nature Ecology & Evolution,2025,96
+Science Advances,2020,2126
+Science Advances,2021,2021
+Science Advances,2022,2212
+Science Advances,2023,2139
+Science Advances,2024,2319
+Science Advances,2025,1081
+"Annual Review of Ecology, Evolution, and Systematics",2020,26
+"Annual Review of Ecology, Evolution, and Systematics",2021,30
+"Annual Review of Ecology, Evolution, and Systematics",2022,21
+"Annual Review of Ecology, Evolution, and Systematics",2023,23
+"Annual Review of Ecology, Evolution, and Systematics",2024,21
+"Annual Review of Ecology, Evolution, and Systematics",2025,1
+Molecular Biology and Evolution,2020,200
+Molecular Biology and Evolution,2021,119
+Molecular Biology and Evolution,2022,285
+Molecular Biology and Evolution,2023,285
+Molecular Biology and Evolution,2024,270
+Molecular Biology and Evolution,2025,104
+Proceedings of the National Academy of Sciences (PNAS),2020,4349
+Proceedings of the National Academy of Sciences (PNAS),2021,4188
+Proceedings of the National Academy of Sciences (PNAS),2022,3941
+Proceedings of the National Academy of Sciences (PNAS),2023,3629
+Proceedings of the National Academy of Sciences (PNAS),2024,3956
+Proceedings of the National Academy of Sciences (PNAS),2025,1399
+Ecology Letters,2020,233
+Ecology Letters,2021,285
+Ecology Letters,2022,220
+Ecology Letters,2023,223
+Ecology Letters,2024,255
+Ecology Letters,2025,92
+Molecular Ecology,2020,493
+Molecular Ecology,2021,559
+Molecular Ecology,2022,520
+Molecular Ecology,2023,454
+Molecular Ecology,2024,402
+Molecular Ecology,2025,161
+Ecography,2020,164
+Ecography,2021,157
+Ecography,2022,144
+Ecography,2023,140
+Ecography,2024,166
+Ecography,2025,60
+Conservation Biology,2020,220
+Conservation Biology,2021,215
+Conservation Biology,2022,173
+Conservation Biology,2023,172
+Conservation Biology,2024,241
+Conservation Biology,2025,68
+Functional Ecology,2020,252
+Functional Ecology,2021,263
+Functional Ecology,2022,273
+Functional Ecology,2023,254
+Functional Ecology,2024,252
+Functional Ecology,2025,92
+Ecological Applications,2020,189
+Ecological Applications,2021,268
+Ecological Applications,2022,273
+Ecological Applications,2023,173
+Ecological Applications,2024,145
+Ecological Applications,2025,56
+Scientific Reports,2020,22463
+Scientific Reports,2021,24533
+Scientific Reports,2022,22653
+Scientific Reports,2023,23105
+Scientific Reports,2024,32182
+Scientific Reports,2025,15506
+PLOS One,2020,16685
+PLOS One,2021,16624
+PLOS One,2022,16069
+PLOS One,2023,14971
+PLOS One,2024,17730
+PLOS One,2025,6169
+PeerJ,2020,2281
+PeerJ,2021,2119
+PeerJ,2022,1870
+PeerJ,2023,2099
+PeerJ,2024,2016
+PeerJ,2025,641
